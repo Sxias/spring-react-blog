@@ -8,7 +8,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog._core.utils.ApiUtil;
 import shop.mtcoding.blog.user.SessionUser;
-import shop.mtcoding.blog.user.User;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,7 +16,7 @@ public class ReplyController {
 
     @DeleteMapping("/api/replies/{id}")
     public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable Integer id) {
-        User sessionUser = (User) request.getAttribute("sessionUser");
+        SessionUser sessionUser = (SessionUser) request.getAttribute("sessionUser");
         replyService.댓글삭제(id, sessionUser.getId());
         return ResponseEntity.ok(new ApiUtil(null));
     }
