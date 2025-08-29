@@ -40,7 +40,6 @@ public class BoardController {
 
     @PutMapping("/api/boards/{id}")
     public ResponseEntity<?> update(HttpServletRequest request, @PathVariable Integer id, @Valid @RequestBody BoardRequest.UpdateDTO reqDTO, Errors errors) {
-
         SessionUser sessionUser = (SessionUser) request.getAttribute("sessionUser");
         BoardResponse.DTO respDTO = boardService.글수정(id, sessionUser.getId(), reqDTO);
         return ResponseEntity.ok(new ApiUtil(respDTO));
